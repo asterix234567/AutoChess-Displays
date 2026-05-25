@@ -1,5 +1,5 @@
-# MagicalChess
-The Magical Chessboard is normal Chess, but with self moving Figures, that are controlled by Voice or Touchpad.
+# AutoChess
+The AutoChess-Board is normal Chess, but with self moving Figures, that are controlled by Voice or Touchpad.
  Its based on a 3D Printers Motion system and mostly 3D Printed Parts. 
  The project is going to be open source, but we are still thinking about making a guide for it.
  Our Team consists of three students in third class at HTL Bulme.
