@@ -1,3 +1,6 @@
+# INFO
+This Repo contains the Source-Code of the PlatformIO project for the JC8048W550C-Touchdisplays that are being used in the AutoChess-Project
+
 # ♟️ AutoChess
 
 An automated, smart chessboard that brings the digital game into the physical world.
@@ -7,7 +10,6 @@ An automated, smart chessboard that brings the digital game into the physical wo
 ## 📝 Project Overview
 
 **AutoChess** is a physical chessboard featuring self-moving figures that players can control via **TouchDisplay**. 
-This Repo contains the PlatformIO-Project for the JC8048W550C Displays.  
 
 The core mechanics are inspired by **3D printer motion systems** (CoreXY/Cartesian) and the structural components are predominantly **3D printed**. Our goal is to make this project entirely **Open Source**, with plans to release a comprehensive build guide in the future.
 
