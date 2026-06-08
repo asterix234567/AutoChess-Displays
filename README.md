@@ -1,5 +1,6 @@
 # INFO
 This Repo contains the Source-Code of the PlatformIO project for the JC8048W550C-Touchdisplays that are being used in the AutoChess-Project
+The Chessboard Repo for is found here: https://github.com/asterix234567/AutoChess-ChessBoard
 
 # ♟️ AutoChess
 
@@ -66,3 +67,6 @@ To circumvent the buggy submodule definitions, we created a custom configuration
 * We created a dedicated directory named `myboards` in our project root.
 * Inside, we took the original definition of the `JC8048S050C` board, renamed it to `JC8048W550C`, and corrected the pin mappings (ensuring `GPIO_BLCK` is properly defined).
 * *Tip:* If you need to include or create custom boards in PlatformIO yourself, you can read the official guide here: [PlatformIO Custom Board Creation](https://docs.platformio.org/en/latest/platforms/creating_board.html).
+
+#### 5. Spaces in Project-Path
+Never use Spaces in the Project or the Project doesn't Compile. Noticed after changing the Project Name. 
