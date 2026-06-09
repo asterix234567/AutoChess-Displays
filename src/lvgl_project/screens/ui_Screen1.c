@@ -6,10 +6,18 @@
 #include "../ui.h"
 
 lv_obj_t * ui_Screen1 = NULL;
-lv_obj_t * ui_WhitePlayerButton = NULL;
 lv_obj_t * ui_BlackPlayerButton = NULL;
+lv_obj_t * ui_WhitePlayerButton1 = NULL;
 lv_obj_t * ui_NeutralKing = NULL;
 // event funtions
+void ui_event_Screen1(lv_event_t * e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+
+    if(event_code == LV_EVENT_CLICKED) {
+        _ui_screen_change(&ui_Screen2, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &ui_Screen2_screen_init);
+    }
+}
 
 // build funtions
 
@@ -18,29 +26,24 @@ void ui_Screen1_screen_init(void)
     ui_Screen1 = lv_obj_create(NULL);
     lv_obj_remove_flag(ui_Screen1, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
 
-    ui_WhitePlayerButton = lv_button_create(ui_Screen1);
-    lv_obj_set_width(ui_WhitePlayerButton, 400);
-    lv_obj_set_height(ui_WhitePlayerButton, 480);
-    lv_obj_set_x(ui_WhitePlayerButton, -200);
-    lv_obj_set_y(ui_WhitePlayerButton, 0);
-    lv_obj_set_align(ui_WhitePlayerButton, LV_ALIGN_CENTER);
-    lv_obj_add_flag(ui_WhitePlayerButton, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
-    lv_obj_remove_flag(ui_WhitePlayerButton, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-    lv_obj_set_style_radius(ui_WhitePlayerButton, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_color(ui_WhitePlayerButton, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_opa(ui_WhitePlayerButton, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
-
     ui_BlackPlayerButton = lv_button_create(ui_Screen1);
     lv_obj_set_width(ui_BlackPlayerButton, 400);
     lv_obj_set_height(ui_BlackPlayerButton, 480);
-    lv_obj_set_x(ui_BlackPlayerButton, -200);
-    lv_obj_set_y(ui_BlackPlayerButton, 0);
-    lv_obj_set_align(ui_BlackPlayerButton, LV_ALIGN_CENTER);
     lv_obj_add_flag(ui_BlackPlayerButton, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
     lv_obj_remove_flag(ui_BlackPlayerButton, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
     lv_obj_set_style_radius(ui_BlackPlayerButton, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_color(ui_BlackPlayerButton, lv_color_hex(0x383838), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui_BlackPlayerButton, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_WhitePlayerButton1 = lv_button_create(ui_Screen1);
+    lv_obj_set_width(ui_WhitePlayerButton1, 400);
+    lv_obj_set_height(ui_WhitePlayerButton1, 480);
+    lv_obj_set_align(ui_WhitePlayerButton1, LV_ALIGN_TOP_RIGHT);
+    lv_obj_add_flag(ui_WhitePlayerButton1, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
+    lv_obj_remove_flag(ui_WhitePlayerButton1, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    lv_obj_set_style_radius(ui_WhitePlayerButton1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_color(ui_WhitePlayerButton1, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ui_WhitePlayerButton1, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_NeutralKing = lv_image_create(ui_Screen1);
     lv_image_set_src(ui_NeutralKing, &ui_img_neutral_chess_king_svg_png);
@@ -51,6 +54,8 @@ void ui_Screen1_screen_init(void)
     lv_obj_remove_flag(ui_NeutralKing, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
     lv_image_set_scale(ui_NeutralKing, 400);
 
+    lv_obj_add_event_cb(ui_Screen1, ui_event_Screen1, LV_EVENT_ALL, NULL);
+
 }
 
 void ui_Screen1_screen_destroy(void)
@@ -59,8 +64,8 @@ void ui_Screen1_screen_destroy(void)
 
     // NULL screen variables
     ui_Screen1 = NULL;
-    ui_WhitePlayerButton = NULL;
     ui_BlackPlayerButton = NULL;
+    ui_WhitePlayerButton1 = NULL;
     ui_NeutralKing = NULL;
 
 }

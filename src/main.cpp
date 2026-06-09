@@ -2,6 +2,7 @@
 #include <esp32_smartdisplay.h>
 #include <lvgl.h>
 #include "lvgl_project/ui.h"
+#include "MicroChess/MicroChess.ino"
 
 // put function declarations here:
 int myFunction(int, int);
@@ -10,11 +11,8 @@ void setup() {
   // put your setup code here, to run once:
   smartdisplay_init();
   ui_init();
-
-  //auto display = lv_display_get_default();
-  // lv_display_set_rotation(display, LV_DISPLAY_ROTATION_90);
-  // lv_display_set_rotation(display, LV_DISPLAY_ROTATION_180);
-  // lv_display_set_rotation(display, LV_DISPLAY_ROTATION_270);
+  setup_chess();
+  
 }
 
 void colour_select() {
