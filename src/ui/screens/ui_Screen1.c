@@ -10,7 +10,16 @@ lv_obj_t * ui_BlackPlayerButton = NULL;
 lv_obj_t * ui_WhitePlayerButton1 = NULL;
 lv_obj_t * ui_NeutralKing = NULL;
 // event funtions
-void ui_event_Screen1(lv_event_t * e)
+void ui_event_BlackPlayerButton(lv_event_t * e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+
+    if(event_code == LV_EVENT_CLICKED) {
+        _ui_screen_change(&ui_Screen2, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &ui_Screen2_screen_init);
+    }
+}
+
+void ui_event_WhitePlayerButton1(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
 
@@ -54,7 +63,8 @@ void ui_Screen1_screen_init(void)
     lv_obj_remove_flag(ui_NeutralKing, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
     lv_image_set_scale(ui_NeutralKing, 400);
 
-    lv_obj_add_event_cb(ui_Screen1, ui_event_Screen1, LV_EVENT_ALL, NULL);
+    lv_obj_add_event_cb(ui_BlackPlayerButton, ui_event_BlackPlayerButton, LV_EVENT_ALL, NULL);
+    lv_obj_add_event_cb(ui_WhitePlayerButton1, ui_event_WhitePlayerButton1, LV_EVENT_ALL, NULL);
 
 }
 

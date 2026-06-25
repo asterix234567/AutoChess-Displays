@@ -13,9 +13,10 @@ extern "C" {
 // SCREEN: ui_Screen1
 extern void ui_Screen1_screen_init(void);
 extern void ui_Screen1_screen_destroy(void);
-extern void ui_event_Screen1(lv_event_t * e);
 extern lv_obj_t * ui_Screen1;
+extern void ui_event_BlackPlayerButton(lv_event_t * e);
 extern lv_obj_t * ui_BlackPlayerButton;
+extern void ui_event_WhitePlayerButton1(lv_event_t * e);
 extern lv_obj_t * ui_WhitePlayerButton1;
 extern lv_obj_t * ui_NeutralKing;
 // CUSTOM VARIABLES

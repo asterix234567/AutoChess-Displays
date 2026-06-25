@@ -1,35 +1,50 @@
 #include <Arduino.h>
 #include <esp32_smartdisplay.h>
 #include <lvgl.h>
-#include "lvgl_project/ui.h"
-#include "MicroChess/MicroChess.ino"
 
-void chessTask(void * pvParameters) {
-  setup_chess(); // Startet die unendliche Schach-Schleife isoliert auf Kern 0
-}
+#include "ui/ui.h"
 
 void setup() {
-  // put your setup code here, to run once:
+  Serial.begin(115200);
+
   smartdisplay_init();
   ui_init();
-
-  xTaskCreatePinnedToCore(
-        chessTask,        /* Funktion des Tasks */
-        "ChessTask",      /* Name */
-        16384,            /* Ausreichend Stack-Speicher */
-        NULL,             /* Parameter */
-        1,                /* Niedrige Priorität */
-        NULL,             /* Task-Handle */
-        0                 /* Kern 0 */
-  );
-  
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  //lv_obj_set_style_bg_color(lv_scr_act(), lv_color_hex(0x00FF00), LV_PART_MAIN);
+    lv_timer_handler(); 
+
+    Serial.println("Loop läuft...");
+    delay(1000);
+
+    // 2. Unabhängig die Touch-Daten abfragen, die LVGL gerade ermittelt hat
+    lv_indev_t* indev = lv_indev_get_next(NULL); // Holt das Eingabegerät (Touchscreen)
+    Serial.printf("Device type: %d\n", indev->type);
     
-    lv_timer_handler(); // Hält das GUI-Framework am Laufen
+    if (indev != NULL) {
+        lv_point_t point;
+        // Holt die aktuellen X/Y Koordinaten des Zeigers
+        lv_indev_get_point(indev, &point); 
+
+        // Prüfen, ob der Bildschirm im Moment aktiv berührt wird
+        lv_indev_state_t state = lv_indev_get_state(indev);
+        Serial.printf("Touch state: %d\n", state);
+        if (state == LV_INDEV_STATE_PRESSED) {
+
+            int16_t touch_x = point.x;
+            int16_t touch_y = point.y;
+
+            // Hier hast du deine exakten Pixel-Daten für das Schachspiel!
+            Serial.printf("Touch erkannt! X: %d, Y: %d\n", touch_x, touch_y);
+        }
+    } else {
+        Serial.println("Kein Eingabegerät gefunden!");
+    }
+    
+    /*
+    String touch = touch_calibration_data.valid ? "calibrated" : "not calibrated";
+    Serial.println(touch);
+    delay(1000);
+    */
     delay(5);
 }
-
